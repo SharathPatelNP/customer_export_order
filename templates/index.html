@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Vendor Form</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="main-heading-div">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for msg in messages %}
+          <p>{{msg}}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <h>Customer Export Order</h>
+  </div>
+  <form method="post">
+    <div>
+      <div class="main-container"  style="display: grid; grid-template-columns: 1fr 1fr;">
+      
+        <div class="sub-container">
+          <h class="page-headers">Importer details</h>
+          
+          <label for="name">Name</label>
+          <input id="name" name="name" required>
+
+          <label for="company">Company</label>
+          <input id="company" company="company" required>
+
+          <label for="address">Address</label>
+          <textarea name="address" class="address-text" rows="4" cols="50"></textarea>
+
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" required>
+
+          <label for="email">Email</label>
+          <input id="email" name="email" required>
+
+
+        </div> <!--importer address-->
+
+        <div class="sub-container">
+          <h class="page-headers">Shipping address</h><br>
+          
+          <label for="name">Name</label>
+          <input id="name" name="name" >
+
+          <label for="company">Company</label>
+          <input id="company" company="company" >
+
+          <label for="address">Address</label>
+          <textarea name="address" class="address-text" rows="4" cols="50"></textarea>
+
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" >
+
+          <label for="email">Email</label>
+          <input id="email" name="email" >
+
+        </div> <!-- shipping address-->
+
+        <div class="sub-container">
+          <h class="page-headers">Other details</h><br>
+          
+          <label for="shipping-term">Shipping term:</label>
+          <select id="shipping-term" name="shipping-term">
+            <option value="INCO FOB">Freight on Board (FOB)</option>
+            <option value="INCO FCL">Full Container Load (FCL)</option>
+            <option value="INCO EXW">Ex Works (EXW)</option>
+            <option value="INCO FCA">Free Carrier (FCA)</option>
+            <option value="INCO CPT">Carriage Paid To (CPT)</option>
+            <option value="INCO CIP">Carriage And Insurance Paid (CIP)</option>
+            <option value="INCO DAP">Delivered At Place (DAP)</option>
+            <option value="INCO DDP">Delivered Duty Paid (DDP)</option>
+            <option value="INCO FAS">Free Alongside Ship (FAS)</option>
+            <option value="INCO C&F">Cost and Frieght (C&F)</option>
+            <option value="INCO CIF">Cost Insurance and Frieght (CIF)</option>
+          </select>
+
+          <label for="transport">Tansport medium:</label>
+          <select id="transport" name="transport">
+            <option value="air">Air</option>
+            <option value="Sea">Sea</option>
+            <option value="road">Road</option>
+          </select>
+
+          <label for="payment-term">Payment term:</label>
+          <select id="payment-term" name="payment-term">
+            <option value="payment-term-lc">Against LC</option>
+            <option value="payment-term-lc2">LC at sight</option>
+            <option value="payment-term-advance">Against Advance Paid</option>
+            <option value="payment-term-credit30">Against Payment terms Credit Period - 30 Days</option>
+            <option value="payment-term-credit45">Against Payment terms Credit Period - 45 Days</option>
+            <option value="payment-term-credit60">Against Payment terms Credit Period - 60 Days</option>
+            <option value="payment-term-credit90">Against Payment terms Credit Period - 90 Days</option>
+            <option value="payment-term-credit120">Against Payment terms Credit Period - 120 Days</option>
+          </select>
+
+          <label for="phyto-type">Phyto type:</label>
+          <select id="phyto-type" name="phyto-type">
+            <option value="volvo">Simple</option>
+            <option value="volvo">With additional declarations</option>
+          </select>
+
+          <label for="destination-country">Destination country</label>
+          <input id="destination-country" name="destination-country" required>
+
+          <label for="port-of-discharge">Port of discharge</label>
+          <input id="port-of-discharge" name="port-of-discharge" >
+
+        </div> <!-- Other details-->
+
+        <div class="sub-container">
+          <h class="page-headers">Additional certificates</h><br><br>
+          <div class="main-checkbox-div">
+            <div class="checkbox-div">
+              <label for="certificate-of-origin">Certificate of origin</label>
+              <input type="checkbox" id="certificate-of-origin" name="certificate-of-origin">
+            </div>
+
+            <div class="checkbox-div">
+              <label for="ista">ISTA certification</label>
+              <input type="checkbox" id="ista" name="ista">
+            </div>
+
+            <div class="checkbox-div">
+              <label for="insurance">Insurance</label>
+              <input type="checkbox" id="insurance" name="insurance">
+            </div>
+
+            <div class="checkbox-div">
+              <label for="proforma-invoice">Proforma invoice</label>
+              <input type="checkbox" id="proforma-invoice" name="proforma-invoice">
+            </div>
+
+            <div class="checkbox-div">
+              <label for="embessy-attestation">Embessy attestation</label>
+              <input type="checkbox" id="embessy-attestation" name="embessy-attestation">
+            </div>
+          </div>
+        </div><!--additional certifications-->
+
+      </div> <!-- main container Importer, Shipping, Other, Certifications-->
+
+      <div class="main-container">
+        <table cellpadding="5" cellspacing="0">
+          <thead>
+            <tr>
+              <th>HSN Code</th>
+              <th>Crop</th>
+              <th>Variety</th>
+              <th>Export name</th>
+              <th>Packing-UOM</th>
+              <th>Quantity</th>
+              <th>Rate $/UOM</th>
+              <th>Amount $</th>
+              <th>Germ %</th>
+              <th>Purity %</th>
+              <th>Treatment Y/N</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 15 rows -->
+            <tr>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+            </tr>
+            <tr>
+              <td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td><td><input type="text"></td>
+            </tr>
+        </table>
+
+      </div> <!--main container Item details-->
+
+      <div class="main-container" style="text-align: right;">
+        <button type="reset">Clear</button>
+        <button type="submit">Save</button>
+      </div>
+      
+    </div><!--Main main container-->
+
+    
+  </form>  
+</body> <!---->
+</html>
+

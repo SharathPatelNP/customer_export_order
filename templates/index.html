@@ -7,13 +7,6 @@
 </head>
 <body>
   <div class="main-heading-div">
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        {% for msg in messages %}
-          <p>{{msg}}</p>
-        {% endfor %}
-      {% endif %}
-    {% endwith %}
     <h>Customer Export Order</h>
   </div>
   <form method="post">
@@ -203,6 +196,7 @@
   </form>  
 </body> <!---->
 </html>
+
 
 
 
